@@ -4,6 +4,7 @@ namespace MechanicShop.Domain.Customers
 {
     public static class CustomerErrors
     {
+        //Properties // it must be Fields
         public static Error NameRequired =>
             Error.Validation("Customer_Name_Required", "Customer name is required");
 
@@ -18,6 +19,8 @@ namespace MechanicShop.Domain.Customers
 
         public static Error CustomerExists =>
             Error.Conflict("Customer_Email_Exists", "A customer with this email already exists.");
+
+        //Fields 
 
         public static readonly Error InvalidPhoneNumber =
             Error.Conflict("Customer.InvalidPhoneNumber", "Phone number must be 7–15 digits and may start with '+'.");

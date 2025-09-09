@@ -3,6 +3,11 @@ using System.Text.Json.Serialization;
 
 namespace MechanicShop.Domain.Common.Results
 {
+    public readonly record struct Success;
+    public readonly record struct Created;
+    public readonly record struct Deleted;
+    public readonly record struct Updated;
+
     public static class Result
     {
         public static Success Success => default;
@@ -95,10 +100,7 @@ namespace MechanicShop.Domain.Common.Results
             => new(errors);
     }
 
-    public readonly record struct Success;
-    public readonly record struct Created;
-    public readonly record struct Deleted;
-    public readonly record struct Updated;
+    
 
 
 }

@@ -30,7 +30,7 @@ public sealed class RepairTask : AuditableEntity
         EstimatedDurationInMins = estimatedDurationInMins;
         _parts = parts;
     }
-
+    //static
     public static Result<RepairTask> Create(Guid id, string name, decimal laborCost, RepairDurationInMinutes estimatedDurationInMins, List<Part> parts)
     {
         if (string.IsNullOrWhiteSpace(name))
@@ -50,9 +50,11 @@ public sealed class RepairTask : AuditableEntity
 
         return new RepairTask(id, name.Trim(), laborCost, estimatedDurationInMins, parts);
     }
-
+    // Upsert (Update أو Insert)
+    // not static
     public Result<Updated> UpsertParts(List<Part> incomingParts)
     {
+        // حذف الاجزاء غير المطلوبة 
         _parts.RemoveAll(existing => incomingParts.All(p => p.Id != existing.Id));
 
         foreach (var incoming in incomingParts)
@@ -60,21 +62,21 @@ public sealed class RepairTask : AuditableEntity
             var existing = _parts.FirstOrDefault(p => p.Id == incoming.Id);
             if (existing is null)
             {
-                _parts.Add(incoming);
+                _parts.Add(incoming); // Insert
             }
             else
             {
                 var updatePartResult = existing.Update(incoming.Name, incoming.Cost, incoming.Quantity);
                 if (updatePartResult.IsError)
                 {
-                    return updatePartResult.Errors;
+                    return updatePartResult.Errors; // update
                 }
             }
         }
 
         return Result.Updated;
     }
-
+    // not static
     public Result<Updated> Update(string name, decimal laborCost, RepairDurationInMinutes estimatedDurationInMins)
     {
         if (string.IsNullOrWhiteSpace(name))

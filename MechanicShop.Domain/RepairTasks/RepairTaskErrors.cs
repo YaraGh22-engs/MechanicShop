@@ -1,7 +1,7 @@
 ﻿using MechanicShop.Domain.Common.Results;
 
 namespace MechanicShop.Domain.RepairTasks;
-
+// have to be Fields
 public static class RepairTaskErrors
 {
     public static Error NameRequired =>

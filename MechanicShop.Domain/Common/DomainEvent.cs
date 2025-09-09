@@ -7,5 +7,6 @@ using System.Threading.Tasks;
 
 namespace MechanicShop.Domain.Common
 {
+    // INotification من MediatR - للتعامل مع الأحداث
     public abstract class DomainEvent : INotification;
 }

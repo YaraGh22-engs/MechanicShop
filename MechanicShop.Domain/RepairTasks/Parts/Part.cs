@@ -19,7 +19,8 @@ public sealed class Part : AuditableEntity
         Cost = cost;
         Quantity = quantity;
     }
-
+    // not static 
+    //التحديث يتم على كائن محدد (instance)،
     public Result<Updated> Update(string? name, decimal cost, int quantity)
     {
         if (string.IsNullOrWhiteSpace(name))
@@ -43,7 +44,9 @@ public sealed class Part : AuditableEntity
 
         return Result.Updated;
     }
-
+    //static 
+    //بناء وإنشاء كائن جديد من النوع Part.
+    //تنتمي إلى الكلاس وليس لأي كائن
     public static Result<Part> Create(Guid id, string name, decimal cost, int quantity)
     {
         if (string.IsNullOrWhiteSpace(name))

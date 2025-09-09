@@ -4,6 +4,7 @@ namespace MechanicShop.Domain.Customers.Vehicles;
 
 public static class VehicleErrors
 {
+    // have to be readonly Fields , not Property
     public static Error MakeRequired =>
         Error.Validation("Vehicle_Make_Required", "Vehicle make is required");
 

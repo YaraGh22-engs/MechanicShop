@@ -11,7 +11,8 @@ public sealed class RefreshToken : AuditableEntity
 
     private RefreshToken()
     { }
-
+    //يمنع الإنشاء المباشر من خارج الكلاس للحفاظ على صحة البيانات.
+    //يتم الإنشاء عبر Static Factory Method (Create)
     private RefreshToken(Guid id, string? token, string? userId, DateTimeOffset expiresOnUtc)
         : base(id)
     {

@@ -27,6 +27,7 @@ namespace MechanicShop.Domain.Customers
             _vehicles = vehicles;
         }
 
+        // create must be static
         public static Result<Customer> Create(Guid id, string name, string phoneNumber, string email, List<Vehicle> vehicles)
         {
             if (string.IsNullOrWhiteSpace(name))
@@ -79,17 +80,19 @@ namespace MechanicShop.Domain.Customers
 
             return Result.Updated;
         }
-
+        // Upsert (Update + Insert)
         public Result<Updated> UpsertParts(List<Vehicle> incomingVehicle)
         {
+            //// 1. Delete unwanted vehicles
             _vehicles.RemoveAll(existing => incomingVehicle.All(v => v.Id != existing.Id));
 
+            //// 2. Update the existing one or add a new one
             foreach (var incoming in incomingVehicle)
             {
                 var existing = _vehicles.FirstOrDefault(v => v.Id == incoming.Id);
                 if (existing is null)
                 {
-                    _vehicles.Add(incoming);
+                    _vehicles.Add(incoming); // add a new one
                 }
                 else
                 {
@@ -97,7 +100,7 @@ namespace MechanicShop.Domain.Customers
 
                     if (updateVehicleResult.IsError)
                     {
-                        return updateVehicleResult.Errors;
+                        return updateVehicleResult.Errors; // Update the existing one
                     }
                 }
             }

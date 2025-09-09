@@ -16,9 +16,9 @@ namespace MechanicShop.Domain.Common
 
         protected Entity(Guid id)
         {
-            id = Id == Guid.Empty ? Guid.Empty : id;
+            Id = id == Guid.Empty ? Guid.NewGuid() : id;
         }
-
+        //Domain Events Management
         public void AddDomainEvent(DomainEvent domainEvent)
         {
             _domainEvents.Add(domainEvent);

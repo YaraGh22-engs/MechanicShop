@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MechanicShop.Domain.Common.Results
+﻿namespace MechanicShop.Domain.Common.Results
 {
     public readonly record struct Error
     {
@@ -21,6 +15,8 @@ namespace MechanicShop.Domain.Common.Results
 
         public ErrorKind Type { get; }
 
+
+        // Factory Methods 
         public static Error Failure(string code = nameof(Failure), string description = "General failure.")
             => new(code, description, ErrorKind.Failure);
 

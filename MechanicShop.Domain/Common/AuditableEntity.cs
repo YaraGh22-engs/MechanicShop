@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace MechanicShop.Domain.Common
 {
+    // يحصل على:
+    // - Id (من Entity)
+    // - Domain Events (من Entity)
+    // - CreatedAtUtc, CreatedBy, LastModifiedUtc, LastModifiedBy (من AuditableEntity)
     public abstract class AuditableEntity : Entity
     {
         protected AuditableEntity() { }
