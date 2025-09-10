@@ -1,11 +1,7 @@
-﻿using System.Threading;
-
-using MechanicShop.Application.Common.Errors;
+﻿using MechanicShop.Application.Common.Errors;
 using MechanicShop.Application.Common.Interfaces;
-using MechanicShop.Application.Features.RepairTasks.Commands.RemoveRepairTask;
 using MechanicShop.Domain.Common.Results;
 using MechanicShop.Domain.Customers;
-using MechanicShop.Domain.RepairTasks;
 
 using MediatR;
 
